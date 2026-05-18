@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Quiz de Matemática</title>
+
+<style>
+    body {
+        font-family: Arial;
+        text-align: center;
+        background: #f0f8ff;
+    }
+
+    .quiz-box {
+        background: white;
+        padding: 20px;
+        margin: 50px auto;
+        width: 400px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 10px;
+        width: 100%;
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="quiz-box">
+    <h2>Quiz de Matemática 🧠</h2>
+    <p id="pergunta"></p>
+    <input type="text" id="resposta" placeholder="Digite sua resposta">
+    <button onclick="verificar()">Responder</button>
+    <p id="resultado"></p>
+</div>
+
+<script>
+const perguntas = [
+    {pergunta: "|-5| =", resposta: "5"},
+    {pergunta: "O oposto de 8 =", resposta: "-8"},
+    {pergunta: "Simplifique 4/8 =", resposta: "1/2"},
+    {pergunta: "1 ÷ 3 =", resposta: "0.333"},
+    {pergunta: "7 é primo? (sim/nao)", resposta: "sim"},
+    {pergunta: "2/4 e 1/2 são equivalentes? (sim/nao)", resposta: "sim"},
+    {pergunta: "|-20| =", resposta: "20"},
+    {pergunta: "O oposto de -15 =", resposta: "15"},
+    {pergunta: "Simplifique 10/5 =", resposta: "2"},
+    {pergunta: "9 é primo? (sim/nao)", resposta: "nao"}
+];
+
+let atual = 0;
+let pontos = 0;
+
+function mostrarPergunta() {
+    document.getElementById("pergunta").innerText = perguntas[atual].pergunta;
+}
+
+function verificar() {
+    let resp = document.getElementById("resposta").value.toLowerCase();
+
+    if (resp == perguntas[atual].resposta) {
+        pontos++;
+        document.getElementById("resultado").innerText = "✅ Correto!";
+    } else {
+        document.getElementById("resultado").innerText = "❌ Errado!";
+    }
+
+    atual++;
+    document.getElementById("resposta").value = "";
+
+    if (atual < perguntas.length) {
+        setTimeout(() => {
+            document.getElementById("resultado").innerText = "";
+            mostrarPergunta();
+        }, 1000);
+    } else {
+        document.getElementById("pergunta").innerText = "Fim do quiz!";
+        document.getElementById("resultado").innerText = 
+            "Pontuação: " + pontos + "/" + perguntas.length;
+    }
+}
+
+mostrarPergunta();
+</script>
+
+</body>
+</html>

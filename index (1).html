@@ -1,0 +1,401 @@
+ <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>3 INFO</title>
+   <style>
+    body, html {
+  margin: 0;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center;     /* Centraliza verticalmente */
+  height: 100vh;           /* Altura total da tela (Viewport Height) */
+  background-color: #f0f2f5;
+}
+
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  text-align: center;
+  font-family: sans-serif;
+}
+   </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Conversor de Metros para Centímetros</h2>
+
+    <p>Digite o valor em metros:</p>
+    <input type="number" id="metros" step="any">
+    <button onclick="converter()">Converter</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function converter() {
+            var metros = parseFloat(document.getElementById("metros").value);
+            var centimetros = metros * 100;
+            document.getElementById("resultado").innerText = 
+                "O valor em centímetros é: " + centimetros;
+        }
+    </script> 
+    </div>
+  </div>
+  <div class="container">
+    <div class="card">
+      
+    <h2>Conversor de Metros </h2>
+
+    <p>Digite o valor em metros:</p>
+    <input type="number" id="metros" step="any">
+    <button onclick="mm()">Milimetros</button>
+    <button onclick="cm()">Centimetros</button>
+    <button onclick="m()">Metros</button>
+    <button onclick="km()">Kilometros</button>
+    <p id="resultado"></p>
+
+    <script>
+        function mm() {
+            var metros = parseFloat(document.getElementById("metros").value);
+            var milimetros = metros * 1000;
+            document.getElementById("resultado").innerText = 
+                "O valor em milimetros é: " + milimetros;
+        }
+        function cm() {
+            var metros = parseFloat(document.getElementById("metros").value);
+            var centimetros = metros * 100;
+            document.getElementById("resultado").innerText = 
+                "O valor em metros é: " + centimetros;
+        }
+        function m() {
+            var metros = parseFloat(document.getElementById("metros").value);
+            var metros = metros * 1;
+            document.getElementById("resultado").innerText = 
+                "O valor em metros é: " + metros;
+        }
+        function km() {
+            var metros = parseFloat(document.getElementById("metros").value);
+            var kilometros = metros / 1000;
+            document.getElementById("resultado").innerText = 
+                "O valor em metros é: " + kilometros;
+        }
+    </script>
+    </div>
+  </div>
+  <div class="container">
+    <div class="card">
+      <div class="quiz-header">
+        <h2 id="question">Question text</h2>
+        <ul>
+          <li>
+            <input type="radio" name="answer" id="a" class="answer">
+            <label for="a" id="a_text">Question</label>
+          </li>
+
+          <li>
+            <input type="radio" name="answer" id="b" class="answer">
+            <label for="b" id="b_text">Question</label>
+          </li>
+
+          <li>
+            <input type="radio" name="answer" id="c" class="answer">
+            <label for="c" id="c_text">Question</label>
+          </li>
+
+          <li>
+            <input type="radio" name="answer" id="d" class="answer">
+            <label for="d" id="d_text">Question</label>
+          </li>
+        </ul>
+      </div>
+      <button id="submit">Submit</button>
+    </div>
+    <script>
+       const quizData = [
+    {
+        question: "Which language runs in a web browser?",
+        a: "Java",
+        b: "C",
+        c: "Python",
+        d: "JavaScript",
+        correct: "d",
+    },
+    {
+        question: "What does CSS stand for?",
+        a: "Central Style Sheets",
+        b: "Cascading Style Sheets",
+        c: "Cascading Simple Sheets",
+        d: "Cars SUVs Sailboats",
+        correct: "b",
+    },
+    {
+        question: "What does HTML stand for?",
+        a: "Hypertext Markup Language",
+        b: "Hypertext Markdown Language",
+        c: "Hyperloop Machine Language",
+        d: "Helicopters Terminals Motorboats Lamborginis",
+        correct: "a",
+    },
+    {
+        question: "What year was JavaScript launched?",
+        a: "1996",
+        b: "1995",
+        c: "1994",
+        d: "none of the above",
+        correct: "b",
+    },
+];
+
+const quiz = document.getElementById('quiz')
+const answerEls = document.querySelectorAll('.answer')
+const questionEl = document.getElementById('question')
+const a_text = document.getElementById('a_text')
+const b_text = document.getElementById('b_text')
+const c_text = document.getElementById('c_text')
+const d_text = document.getElementById('d_text')
+const submitBtn = document.getElementById('submit')
+
+let currentQuiz = 0
+let score = 0
+
+loadQuiz()
+
+function loadQuiz() {
+    deselectAnswers()
+
+    const currentQuizData = quizData[currentQuiz]
+
+    questionEl.innerText = currentQuizData.question
+    a_text.innerText = currentQuizData.a
+    b_text.innerText = currentQuizData.b
+    c_text.innerText = currentQuizData.c
+    d_text.innerText = currentQuizData.d
+}
+
+function deselectAnswers() {
+    answerEls.forEach(answerEl => answerEl.checked = false)
+}
+
+function getSelected() {
+    let answer
+
+    answerEls.forEach(answerEl => {
+        if(answerEl.checked) {
+            answer = answerEl.id
+        }
+    })
+
+    return answer
+}
+
+submitBtn.addEventListener('click', () => {
+    const answer = getSelected()
+    
+    if(answer) {
+        if(answer === quizData[currentQuiz].correct) {
+            score++
+        }
+
+        currentQuiz++
+
+        if(currentQuiz < quizData.length) {
+            loadQuiz()
+        } else {
+            quiz.innerHTML = `
+                <h2>You answered ${score}/${quizData.length} questions correctly</h2>
+
+                <button onclick="location.reload()">Reload</button>
+            `
+        }
+    }
+})
+    </script>
+    </div>
+  </div>
+  <div class="container">
+    <div class="card">
+      <div id="card">
+      <label> Digite um caminho</label>
+      <p><input type="text" id="b">
+      <p><label>Nome</label>
+      <p><input type="text" id="nome" >
+      <p><label>Valor</label>
+      <p><input type="text" id="valor" >
+      <p><label>Descrição</label>
+      <p><input type="text" id="descricao" >            
+      <p><button id="body" onclick="adicionar()">adicionar</button>
+      <button id="bod" onclick="remover()">remover</button><p>
+
+    </div>  
+    <script>
+        function adicionar(){
+          const novaImagem = document.createElement('img');
+          novaImagem.id = 'img';
+          novaImagem.src = document.getElementById("b").value; 
+          document.body.appendChild(novaImagem);
+          const descri = document.getElementById("descricao").value;
+          const no = document.createElement("h1");
+          no.innerText = descri;
+          no.id = 'no';
+          document.body.appendChild(no);
+          const valor = document.getElementById("valor").value;
+          const va = document.createElement("h1");
+          va.innerText = valor;
+          va.id = 'va';
+          document.body.appendChild(va);
+          no.style.backgroundColor = "";
+          document.body.style.backgroundColor = "";
+          document.getElementById("card").style.border = "";
+          document.getElementById("card").style.backgroundColor = "";
+      }
+    </script>
+    <script>
+        function remover(){
+          const element = document.getElementById("img");
+          const elemen = document.getElementById("no");          
+          element.remove();
+          elemen.remove();
+          }
+    </script>  
+    </div>
+  </div>  
+  <div class="container">
+    <div class="card">
+      <h3>A demonstration of how to access an URL field</h3>
+
+      Homepage: <input type="url" id="myURL" value="http://www.google.com">
+
+      <p>Click the button to get the URL of the URL field.</p>
+
+      <button onclick="myFunction()">Try it</button>
+
+      <p id="demo"></p>
+
+      <script>
+      function myFunction() {
+        var x = document.getElementById("myURL").value;
+        document.getElementById("demo").innerHTML = x;
+      }
+      </script>
+
+      <h3>A demonstration of how to access an OPTION element</h3>
+
+      <select>
+        <option id="myOption" value="volvocar">Volvo</option>
+        <option value="saabcar">Saab</option>
+      </select>
+
+      <p>Click the button to get the text of the Volvo option in the drop-down list.</p>
+
+      <button onclick="myFunctio()">Try it</button>
+
+      <button id="dem"></button>
+
+      <script>
+      function myFunctio() {
+        var x = document.getElementById("myOption").text;
+        document.getElementById("dem").innerHTML = x;
+      }
+      </script>
+    </div>
+  </div>
+  <div class="container">
+    <div class="card">
+      <button id="myBtn" onclick="myFunction()">Try it</button>
+      <p>insira o nome aqui</p>
+      <p id="demo"></p>
+
+      <script>
+      function myFunction(){ // 1. Crie um novo elemento <img>
+      const novaImagem = document.createElement('img');
+
+      // 2. Defina o atributo 'src' com o caminho da imagem
+      novaImagem.src = 'caminho/para/sua/imagem.jpg';
+
+      // 3. Defina o atributo 'alt' para acessibilidade
+      novaImagem.alt = 'Descrição da imagem';
+
+      // 4. Selecione o elemento pai onde a imagem será inserida (por exemplo, um <div> com o id="container")
+      const container = document.getElementById('container');
+
+      // 5. Adicione o novo elemento de imagem ao elemento pai
+      container.appendChild(novaImagem);}
+      </script>
+    </div>
+  </div>
+  <div class="container">
+    <div class="card">
+    <h2>Jogo da Moeda</h2>
+    <p>Aperte o botão para girar a moeda</p>
+    <button onclick="girarMoeda()">Girar</button>
+    <p id="resultado"></p>
+    <script>
+        function girarMoeda() {
+            var num = Math.floor(Math.random() * 2) + 1;
+            if (num == 1) {
+                document.getElementById("resultado").innerText = "Caiu cara";
+            } else {
+                document.getElementById("resultado").innerText = "Caiu coroa";
+            }
+        }
+    </script>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="card">
+      <button id="myBtn" onclick="myFunction()">clique aqui</button>
+
+      <p>insira o nome aqui</p>
+      <p id="demo"></p>
+
+      <script>
+      function myFunction(){
+        let text = document.getElementById("myBtn").innerText;
+        nome = prompt("")
+        document.getElementById("demo").innerHTML = nome;  
+      }
+      </script>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="card">
+      <h2> appendChild() </h2>
+      <ul id="myList">
+        <li>Coffee</li>
+        <li>Tea</li>
+      </ul>
+
+      <p>Adicione ou remova algo</p>
+
+      <button onclick="adicionar()">Append</button>
+
+      <script>
+        function adicionar() {
+        const node = document.createElement("li");
+        const textnode = document.createTextNode("Water");
+        node.appendChild(textnode);
+        document.getElementById("myList").appendChild(node);
+        }
+        <script>
+      function myFunction() {
+        document.open();
+        document.write("<h1>Hello World</h1>");
+        document.close();
+      }
+      </script>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+ <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>3 INFO</title>
+   <style>
+      body, html {
+      margin: 0;
+      height: 100%;
+    }
+    
+    .container {
+      display: flex;
+      justify-content: center; /* Centraliza horizontalmente */
+      align-items: center;     /* Centraliza verticalmente */
+      height: 100vh;           /* Altura total da tela (Viewport Height) */
+      background-color: #f0f2f5;
+    }
+    
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      max-width: 300px;
+      text-align: center;
+      font-family: sans-serif;
+    }
+    
+    h1 {
+      text-align: center;
+      background-color: #f0f2f5;
+    }
+   </style>
+</head>
+<body>
+  <h1>JOGOS E APPS JS -- 2 INFO</h1>
+  
+  <div class="container">
+    <div class="card">
+      <h2>Conversor de Metros para Centímetros</h2>
+  
+      <p>Digite o valor em metros:</p>
+      <input type="number" id="metros" step="any">
+      <button onclick="converter()">Converter</button>
+  
+      <p id="resultado"></p>
+  
+      <script>
+          function converter() {
+              var metros = parseFloat(document.getElementById("metros").value);
+              var centimetros = metros * 100;
+              document.getElementById("resultado").innerText = 
+                  "O valor em centímetros é: " + centimetros;
+          }
+      </script>
+    </div>
+  </div>
+  
+  
+  <div class="container">
+    <div class="card">
+      <h2>Conversor de Metros </h2>
+  
+      <p>Digite o valor em metros:</p>
+      <input type="number" id="metros1" step="any">
+      <br>
+      <button onclick="mm()">Milimetros</button>
+      <button onclick="cm()">Centimetros</button>
+      <button onclick="m()">Metros</button>
+      <button onclick="km()">Kilometros</button>
+      <p id="resultado1"></p>
+  
+      <script>
+          function mm() {
+              var metros = parseFloat(document.getElementById("metros1").value);
+              var milimetros = metros * 1000;
+              document.getElementById("resultado1").innerText = 
+                  "O valor em milimetros é: " + milimetros;
+          }
+          function cm() {
+              var metros = parseFloat(document.getElementById("metros1").value);
+              var centimetros = metros * 100;
+              document.getElementById("resultado1").innerText = 
+                  "O valor em metros é: " + centimetros;
+          }
+          function m() {
+              var metros = parseFloat(document.getElementById("metros1").value);
+              var metros = metros * 1;
+              document.getElementById("resultado1").innerText = 
+                  "O valor em metros é: " + metros;
+          }
+          function km() {
+              var metros = parseFloat(document.getElementById("metros1").value);
+              var kilometros = metros / 1000;
+              document.getElementById("resultado1").innerText = 
+                  "O valor em metros é: " + kilometros;
+          }
+      </script>
+    </div>
+  </div>
+  
+  
+  <div class="container">
+    <div class="card">
+      <h2>Jogo da Moeda</h2>
+
+        <p>Aperte o botão para girar a moeda</p>
+        <button onclick="girarMoeda()">Girar</button>
+        <p id="resultado2"></p>
+        <script>
+            function girarMoeda() {
+                var num = Math.floor(Math.random() * 2) + 1;
+                if (num == 1) {
+                    document.getElementById("resultado2").innerText = "Caiu cara";
+                } else {
+                    document.getElementById("resultado2").innerText = "Caiu coroa";
+                }
+            }
+        </script>
+    </div>
+  </div>
+  
+  
+  <div class="container">
+    <div class="card">
+      <h2>Título do Card</h2>
+      <p>Este card está centralizado horizontal e verticalmente.</p>
+    </div>
+  </div>
+  
+  
+  <div class="container">
+    <div class="card">
+      <h2>Título do Card</h2>
+      <p>Este card está centralizado horizontal e verticalmente.</p>
+    </div>
+  </div>
+  
+  
+  <div class="container">
+    <div class="card">
+      <h2>Título do Card</h2>
+      <p>Este card está centralizado horizontal e verticalmente.</p>
+    </div>
+  </div>
+</body>
+</html>

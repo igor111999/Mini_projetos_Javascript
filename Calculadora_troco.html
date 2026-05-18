@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Troco</title>
+</head>
+<body>
+
+    <h2>Calculadora de Troco</h2>
+
+    <p>Valor pago:</p>
+    <input type="number" id="valorpago" step="any">
+
+    <p>Valor total da compra:</p>
+    <input type="number" id="valortotal" step="any">
+
+    <br><br>
+    <button onclick="calcularTroco()">Calcular</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function calcularTroco() {
+
+            var valorpago = parseFloat(document.getElementById("valorpago").value);
+            var valortotal = parseFloat(document.getElementById("valortotal").value);
+
+            if (valorpago >= valortotal) {
+                var troco = valorpago - valortotal;
+                document.getElementById("resultado").innerText =
+                    "Troco: " + troco;
+            } else {
+                var falta = valortotal - valorpago;
+                document.getElementById("resultado").innerText =
+                    "Valor pago insuficiente, falta: " + falta;
+            }
+
+        }
+    </script>
+
+</body>
+</html>
