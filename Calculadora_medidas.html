@@ -1,0 +1,47 @@
+  <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Conversor de Metros para Centímetros</title>
+</head>
+<body>
+
+    <h2>Conversor de Metros </h2>
+
+    <p>Digite o valor em metros:</p>
+    <input type="number" id="metros" step="any">
+    <button onclick="mm()">Milimetros</button>
+    <button onclick="cm()">Centimetros</button>
+    <button onclick="m()">Metros</button>
+    <button onclick="km()">Kilometros</button>
+    <p id="resultado"></p>
+
+    <script>
+        function mm() {
+            var metros = parseFloat(document.getElementById("metros").value);
+            var milimetros = metros * 1000;
+            document.getElementById("resultado").innerText = 
+                "O valor em milimetros é: " + milimetros;
+        }
+        function cm() {
+            var metros = parseFloat(document.getElementById("metros").value);
+            var centimetros = metros * 100;
+            document.getElementById("resultado").innerText = 
+                "O valor em metros é: " + centimetros;
+        }
+        function m() {
+            var metros = parseFloat(document.getElementById("metros").value);
+            var metros = metros * 1;
+            document.getElementById("resultado").innerText = 
+                "O valor em metros é: " + metros;
+        }
+        function km() {
+            var metros = parseFloat(document.getElementById("metros").value);
+            var kilometros = metros / 1000;
+            document.getElementById("resultado").innerText = 
+                "O valor em metros é: " + kilometros;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body id="fundo" style="background-color: white; color: black;">
+
+<h1 id="text">Fundo</h1>
+
+<button type="button" onclick="mudarFundo()">Click</button>
+
+<script>
+function mudarFundo() {
+
+    var fundo = document.getElementById("fundo");
+
+    if (fundo.style.backgroundColor == "white") {
+        fundo.style.backgroundColor = "black";
+        document.getElementById("text").style.color = "yellow";
+    } else {
+        fundo.style.backgroundColor = "white";
+        document.getElementById("text").style.color = "black";
+    }
+
+}
+</script>
+
+</body>
+</html>

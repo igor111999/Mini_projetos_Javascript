@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo da Moeda</title>
+</head>
+<body>
+
+    <h2>Jogo da Moeda</h2>
+
+    <p>Aperte o botão para girar a moeda</p>
+
+    <button onclick="girarMoeda()">Girar</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function girarMoeda() {
+
+            var num = Math.floor(Math.random() * 2) + 1;
+
+            if (num == 1) {
+                document.getElementById("resultado").innerText = "Caiu cara";
+            } else {
+                document.getElementById("resultado").innerText = "Caiu coroa";
+            }
+
+        }
+    </script>
+
+</body>
+</html>
